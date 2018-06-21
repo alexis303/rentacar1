@@ -6,12 +6,22 @@
 package inacap.webcomponent.rentacar.model;
 
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author 19798398-1
  */
+@Entity
+@Table(name = "Combustible")
 public class CombustibleModel {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     
     private int idCombustible;
@@ -19,7 +29,7 @@ public class CombustibleModel {
     private String detalleCombustible;
     
     
-    public static ArrayList<CombustibleModel> combustible = new ArrayList<>();
+   
 
     public int getIdCombustible() {
         return idCombustible;
@@ -59,78 +69,7 @@ public class CombustibleModel {
         this.detalleCombustible = detalleCombustible;
     }
 
-     public boolean nuevoCombustible(CombustibleModel nuevoCombustible){
     
-        int id = 0;
-        
-        if (!combustible.isEmpty()) {
-            
-            for (CombustibleModel combustibles : combustible) {
-                if (combustibles.getIdCombustible()> id) {
-                    id = combustibles.getIdCombustible();
-                }
-            }
-            
-        }
-        
-        id++;
-        
-        combustible.add(new CombustibleModel(id, nuevoCombustible.getTipoCombustible(), nuevoCombustible.getDetalleCombustible()));
-         
-        return true;
-    }
-    
-    public CombustibleModel buscaCombustible(int idCombustibleBuscado){
-    
-        CombustibleModel combustibleEncontrado = null;
-        
-        if(!combustible.isEmpty()){
-            for (CombustibleModel combustibles : combustible) {
-                if (combustibles.getIdCombustible()== idCombustibleBuscado) {
-                    combustibleEncontrado = combustibles;
-                }
-            }
-        }
-        
-        return combustibleEncontrado;
-        
-    }
-    
-    public CombustibleModel editarCombustible(int idCombustible, CombustibleModel combustibleEditar){
-    
-        CombustibleModel combustibleEditado = null;
-        
-        if(!combustible.isEmpty()){
-            for (CombustibleModel combustibles : combustible) {
-                if (combustibles.getIdCombustible()== idCombustible) {
-                    combustibles.setTipoCombustible(combustibleEditar.getTipoCombustible());
-                    combustibles.setDetalleCombustible(combustibleEditar.getDetalleCombustible());
-                    
-                    combustibleEditado = combustibles;
-                }
-            }
-        }
-        
-        return combustibleEditado;
-        
-    }
-    
-    public boolean eliminarCombustible(int id){
-        CombustibleModel combustibleEliminado = null;
-        
-        if(!combustible.isEmpty()){
-            for (CombustibleModel combustibles : combustible) {
-                if (combustibles.getIdCombustible()== idCombustible) {
-                   combustibleEliminado = combustibles;
-                }
-            }
-        }
-        
-        combustible.remove(combustibleEliminado);
-        
-        
-        return true;
-    }
     
         
     
