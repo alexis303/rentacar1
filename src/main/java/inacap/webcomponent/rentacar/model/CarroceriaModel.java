@@ -17,7 +17,7 @@ public class CarroceriaModel {
     private String nombreCarroceria;
     private String detalleCarroceria;
 
-    public static ArrayList<CarroceriaModel> carroceria = new ArrayList<>();
+    
 
     public int getIdCarroceria() {
         return idCarroceria;
@@ -57,76 +57,6 @@ public class CarroceriaModel {
         this.detalleCarroceria = detalleCarroceria;
     }
 
-    public boolean nuevaCarroceria(CarroceriaModel nuevaCarroceria) {
-
-        int id = 0;
-
-        if (!carroceria.isEmpty()) {
-
-            for (CarroceriaModel carrocerias : carroceria) {
-                if (carrocerias.getIdCarroceria() > id) {
-                    id = carrocerias.getIdCarroceria();
-                }
-            }
-
-        }
-
-        id++;
-
-        carroceria.add(new CarroceriaModel(id, nuevaCarroceria.getNombreCarroceria(), nuevaCarroceria.getDetalleCarroceria()));
-
-        return true;
-    }
-
-    public CarroceriaModel buscaCarroceria(int idCarroceriaBuscada) {
-
-        CarroceriaModel carroceriaEncontrado = null;
-
-        if (!carroceria.isEmpty()) {
-            for (CarroceriaModel carrocerias : carroceria) {
-                if (carrocerias.getIdCarroceria() == idCarroceriaBuscada) {
-                    carroceriaEncontrado = carrocerias;
-                }
-            }
-        }
-
-        return carroceriaEncontrado;
-
-    }
-
-    public CarroceriaModel editarCarroceria(int idCarroceria, CarroceriaModel carroceriaEditar) {
-
-        CarroceriaModel carroceriaEditado = null;
-
-        if (!carroceria.isEmpty()) {
-            for (CarroceriaModel carrocerias : carroceria) {
-                if (carrocerias.getIdCarroceria() == idCarroceria) {
-                    carrocerias.setNombreCarroceria(carroceriaEditar.getNombreCarroceria());
-                    carrocerias.setDetalleCarroceria(carroceriaEditar.getDetalleCarroceria());
-
-                    carroceriaEditado = carrocerias;
-                }
-            }
-        }
-
-        return carroceriaEditado;
-
-    }
-
-    public boolean eliminarCarrocerias(int id) {
-        CarroceriaModel carroceriaEliminado = null;
-
-        if (!carroceria.isEmpty()) {
-            for (CarroceriaModel carrocerias : carroceria) {
-                if (carrocerias.getIdCarroceria() == idCarroceria) {
-                    carroceriaEliminado = carrocerias;
-                }
-            }
-        }
-
-        carroceria.remove(carroceriaEliminado);
-
-        return true;
-    }
+    
 
 }
