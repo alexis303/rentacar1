@@ -6,10 +6,12 @@
 package inacap.webcomponent.rentacar.controller;
 
 import inacap.webcomponent.rentacar.model.TipoPersonaModel;
+import inacap.webcomponent.rentacar.repository.TipoPersonaRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +31,7 @@ public class TipoPersonaController {
     @GetMapping()
     public Iterable<TipoPersonaModel> listarTodos() {
         
-        return tpersonaRepository.findAll;
+        return tpersonaRepository.findAll();
         
     }
 

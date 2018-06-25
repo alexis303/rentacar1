@@ -6,6 +6,7 @@
 package inacap.webcomponent.rentacar.controller;
 
 import inacap.webcomponent.rentacar.model.TransmisionModel;
+import inacap.webcomponent.rentacar.repository.TransmisionRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;

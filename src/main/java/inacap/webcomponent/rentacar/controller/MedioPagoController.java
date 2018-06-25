@@ -7,10 +7,12 @@ package inacap.webcomponent.rentacar.controller;
 
 import inacap.webcomponent.rentacar.model.MedioPagoModel;
 import inacap.webcomponent.rentacar.model.TipoVehiculoModel;
+import inacap.webcomponent.rentacar.repository.MedioPagoRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +32,7 @@ public class MedioPagoController {
       @GetMapping()
     public Iterable<MedioPagoModel> listarTodos() {
         
-        return mpagoRepository.findAll;
+        return mpagoRepository.findAll();
         
     }
 

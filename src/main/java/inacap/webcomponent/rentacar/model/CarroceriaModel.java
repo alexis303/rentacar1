@@ -6,12 +6,18 @@
 package inacap.webcomponent.rentacar.model;
 
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-/**
- *
- * @author 19798398-1
- */
+@Entity
+@Table(name = "Carroceria")
 public class CarroceriaModel {
+    
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
 
     private int idCarroceria;
     private String nombreCarroceria;
