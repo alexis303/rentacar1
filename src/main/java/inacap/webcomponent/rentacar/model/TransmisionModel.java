@@ -17,7 +17,7 @@ public class TransmisionModel {
     private String nombreTransmision;
     private String detalleTransmision;
 
-    public static ArrayList<TransmisionModel> transmision = new ArrayList<>();
+    
 
     public int getIdTransmision() {
         return idTransmision;
@@ -60,79 +60,6 @@ public class TransmisionModel {
         this.detalleTransmision = detalleTransmision;
     }
   
-    public boolean nuevaTransmision(TransmisionModel nuevaTransmision){
-    
-        int id = 0;
-        
-        if (!transmision.isEmpty()) {
-            
-            for (TransmisionModel transmisiones : transmision) {
-                if (transmisiones.getIdTransmision()> id) {
-                    id = transmisiones.getIdTransmision();
-                }
-            }
-            
-        }
-        
-        id++;
-        
-        transmision.add(new TransmisionModel(id, nuevaTransmision.getNombreTransmision(), nuevaTransmision.getDetalleTransmision()));
-         
-        return true;
-    }
-    
-    public TransmisionModel buscatransmision(int idTransmisionBuscada){
-    
-        TransmisionModel transmisionEncontrada = null;
-        
-        if(!transmision.isEmpty()){
-            for (TransmisionModel transmisiones : transmision) {
-                if (transmisiones.getIdTransmision()== idTransmisionBuscada) {
-                    transmisionEncontrada = transmisiones;
-                }
-            }
-        }
-        
-        return transmisionEncontrada;
-        
-    }
-    
-    public TransmisionModel editarTransmision(int idTransmision, TransmisionModel transmisionEditar){
-    
-        TransmisionModel transmisionEditada = null;
-        
-        if(!transmision.isEmpty()){
-            for (TransmisionModel transmisiones : transmision) {
-                if (transmisiones.getIdTransmision()== idTransmision) {
-                    transmisiones.setNombreTransmision(transmisionEditar.getNombreTransmision());
-                    transmisiones.setDetalleTransmision(transmisionEditar.getDetalleTransmision());
-                    
-                    transmisionEditada = transmisiones;
-                }
-            }
-        }
-        
-        return transmisionEditada;
-        
-    }
-    
-    public boolean eliminarTransmision(int id){
-        TransmisionModel transmisionEliminada = null;
-        
-        if(!transmision.isEmpty()){
-            for (TransmisionModel transmisiones : transmision) {
-                if (transmisiones.getIdTransmision()== idTransmision) {
-                   transmisionEliminada = transmisiones;
-                }
-            }
-        }
-        
-        transmision.remove(transmisionEliminada);
-        
-        
-        return true;
-    }
-    
-    
+  
     
 }
