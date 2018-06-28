@@ -15,6 +15,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ModeloRepository extends CrudRepository<ModeloModel, Integer> {
 
-    public List<ModeloModel> findById();
+    
     
 }
