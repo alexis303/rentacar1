@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MedioPago")
+@Table(name="medio_pago")
 public class MedioPagoModel {
     
     @Id
@@ -19,7 +19,7 @@ public class MedioPagoModel {
     private String nombreMedioPago;
     private String detalleMedioPago;
     
-    public static ArrayList<MedioPagoModel> medioPago = new ArrayList<>();
+   
 
     public int getIdMedioPago() {
         return idMedioPago;

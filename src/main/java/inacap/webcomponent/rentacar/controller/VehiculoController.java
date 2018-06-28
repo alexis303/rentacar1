@@ -6,9 +6,12 @@
 package inacap.webcomponent.rentacar.controller;
 
 import inacap.webcomponent.rentacar.model.VehiculoModel;
+import inacap.webcomponent.rentacar.repository.VehiculoRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,62 +26,78 @@ import org.springframework.web.bind.annotation.PutMapping;
  * @author 19798398-1
  */
 @RestController
-@RequestMapping("/urlVehiculo")
+@RequestMapping("/Vehiculo")
 public class VehiculoController {
-    
-       @GetMapping()
-    public List<VehiculoModel> listarTodos() {
-        
-        return VehiculoModel.vehiculo;
-        
+
+    @Autowired
+    private VehiculoRepository vehiculoRepository;
+
+    @GetMapping()
+    public Iterable<VehiculoModel> listarTodos() {
+
+        return vehiculoRepository.findAll();
+
     }
 
-    
     @GetMapping("/{id}")
-    public VehiculoModel muestraUnVehiculo(@PathVariable String id) {
-        VehiculoModel vehiculos = new VehiculoModel();
-        
-        return vehiculos.buscaVehiculo(Integer.parseInt(id));
+    public ResponseEntity<VehiculoModel> muestraUnVehiculo(@PathVariable String id) {
+        Optional<VehiculoModel> vehiculoOptional = vehiculoRepository.findById(Integer.parseInt(id));
+
+        if (vehiculoOptional.isPresent()) {
+            VehiculoModel vehiculoEncontrada = vehiculoOptional.get();
+            return new ResponseEntity<>(vehiculoEncontrada, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
-    
+
     @PutMapping("/{id}")
-    public ResponseEntity<VehiculoModel> editaVehiculos(@PathVariable String id, @RequestBody VehiculoModel vehiculoEditar) {
-        
-        VehiculoModel vehiculos = new VehiculoModel();
-        
-        
-        
-        return new ResponseEntity<>(vehiculos.editarVehiculo(Integer.parseInt(id), vehiculoEditar), HttpStatus.OK);
+    public ResponseEntity<VehiculoModel> editaVehiculo(@PathVariable String id, @RequestBody VehiculoModel vehiculoEditar) {
+
+      
+        Optional<VehiculoModel> vehiculoOptional = vehiculoRepository.findById(Integer.parseInt(id));
+
+        if (vehiculoOptional.isPresent()) {
+            VehiculoModel vehiculoEncontrada = vehiculoOptional.get();
+            vehiculoEditar.setIdVehiculo(vehiculoEncontrada.getIdVehiculo());
+
+            vehiculoRepository.save(vehiculoEditar);
+
+            return new ResponseEntity<>(vehiculoEditar, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
-    
+
     @PostMapping
     public ResponseEntity<?> agregarVehiculo(@RequestBody VehiculoModel nuevoVehiculo) {
-        
-        VehiculoModel vehiculos = new VehiculoModel();
-        
-        if (vehiculos.nuevoVehiculo(nuevoVehiculo)) {
-            
-            return new ResponseEntity<>(HttpStatus.CREATED);
-            
-        }else{
-            
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+
+       nuevoVehiculo = vehiculoRepository.save(nuevoVehiculo);
+
+        Optional<VehiculoModel> vehiculoOptional = vehiculoRepository.findById(nuevoVehiculo.getIdVehiculo());
+
+        if (vehiculoOptional.isPresent()) {
+            VehiculoModel vehiculoEncontrada = vehiculoOptional.get();
+            return new ResponseEntity<>(vehiculoEncontrada, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+
         }
-        
-        
+
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable String id) {
-        
-        VehiculoModel vehiculos = new VehiculoModel();
-        
-        if (vehiculos.eliminarVehiculo(Integer.parseInt(id))) {
+
+     Optional<VehiculoModel> vehiculoOptional = vehiculoRepository.findById(Integer.parseInt(id));
+
+        if (vehiculoOptional.isPresent()) {
+            
+            VehiculoModel vehiculoEncontrada = vehiculoOptional.get();
+            vehiculoRepository.deleteById(vehiculoEncontrada.getIdVehiculo());
             return new ResponseEntity<>(HttpStatus.OK);
-        }else{
-        return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
-        
-        
     }
 }

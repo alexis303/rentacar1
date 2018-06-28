@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping("/urlMedioPago")
+@RequestMapping("/MedioPago")
 public class MedioPagoController {
     
       @Autowired

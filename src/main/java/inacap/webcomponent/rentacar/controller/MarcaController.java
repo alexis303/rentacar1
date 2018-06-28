@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
  * @author 19798398-1
  */
 @RestController
-@RequestMapping("/urlMarca")
+@RequestMapping("/Marca")
 public class MarcaController {
     
     @Autowired

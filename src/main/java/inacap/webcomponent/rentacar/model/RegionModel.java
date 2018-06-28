@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author Alexis
  */
 @Entity
-@Table(name="Region")
+@Table(name="region")
 public class RegionModel {
     
     @Id

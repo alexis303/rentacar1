@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name ="Traccion")
+@Table(name ="traccion")
 public class TraccionModel {
     
     @Id

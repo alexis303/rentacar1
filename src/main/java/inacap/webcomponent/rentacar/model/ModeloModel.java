@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +19,7 @@ import javax.persistence.Table;
  * @author Alexis
  */
 @Entity
-@Table(name="Modelo")
+@Table(name="modelo")
 public class ModeloModel {
     
     @Id
@@ -26,6 +28,9 @@ public class ModeloModel {
     private int idModelo;
     private String nombreModelo;
     private String detalleModelo;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_marca")
     private MarcaModel marca;
     
     

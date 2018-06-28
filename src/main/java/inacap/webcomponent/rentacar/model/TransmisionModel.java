@@ -13,17 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Transmision")
+@Table(name = "transmision")
 public class TransmisionModel {
-    
-     @Id
-     @GeneratedValue( strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int idTransmision;
     private String nombreTransmision;
     private String detalleTransmision;
-
-    
 
     public int getIdTransmision() {
         return idTransmision;
@@ -49,9 +47,6 @@ public class TransmisionModel {
         this.detalleTransmision = detalleTransmision;
     }
 
-   
-    
-    
     public TransmisionModel() {
     }
 
@@ -65,7 +60,5 @@ public class TransmisionModel {
         this.nombreTransmision = nombreTransmision;
         this.detalleTransmision = detalleTransmision;
     }
-  
-  
-    
+
 }

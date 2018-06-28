@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author Alexis
  */
 @Entity
-@Table(name="TipoVehiculo")
+@Table(name="tipo_vehiculo")
 
 public class TipoVehiculoModel {
     
@@ -28,7 +28,7 @@ public class TipoVehiculoModel {
     private String nombreTipoVehiculo;
     private String detalleTipoVehiculo;
     
-    public static ArrayList<TipoVehiculoModel> tipoVehiculo = new ArrayList<>();
+    
 
     public int getIdTipoVehiculo() {
         return idTipoVehiculo;
@@ -70,78 +70,6 @@ public class TipoVehiculoModel {
     
     
       
-    public boolean nuevoTipoVehiculo(TipoVehiculoModel nuevoTipoVehiculo){
-    
-        int id = 0;
-        
-        if (!tipoVehiculo.isEmpty()) {
-            
-            for (TipoVehiculoModel tiposDeVehiculos : tipoVehiculo) {
-                if (tiposDeVehiculos.getIdTipoVehiculo()> id) {
-                    id = tiposDeVehiculos.getIdTipoVehiculo();
-                }
-            }
-            
-        }
-        
-        id++;
-        
-        tipoVehiculo.add(new TipoVehiculoModel(id, nuevoTipoVehiculo.getNombreTipoVehiculo(), nuevoTipoVehiculo.getDetalleTipoVehiculo()));
-         
-        return true;
-    }
-    
-    public TipoVehiculoModel buscaTipoVehiculo(int idTipoVehiculoBuscado){
-    
-        TipoVehiculoModel tipoVehiculoEncontrado = null;
-        
-        if(!tipoVehiculo.isEmpty()){
-            for (TipoVehiculoModel tiposDeVehiculos : tipoVehiculo) {
-                if (tiposDeVehiculos.getIdTipoVehiculo()== idTipoVehiculoBuscado) {
-                    tipoVehiculoEncontrado = tiposDeVehiculos;
-                }
-            }
-        }
-        
-        return tipoVehiculoEncontrado;
-        
-    }
-    
-    public TipoVehiculoModel editarTipoVehiculo(int idTipoVehiculo, TipoVehiculoModel tipoVehiculoEditar){
-    
-        TipoVehiculoModel tipoVehiculoEditado = null;
-        
-        if(!tipoVehiculo.isEmpty()){
-            for (TipoVehiculoModel tiposDeVehiculos : tipoVehiculo) {
-                if (tiposDeVehiculos.getIdTipoVehiculo()== idTipoVehiculo) {
-                    tiposDeVehiculos.setNombreTipoVehiculo(tipoVehiculoEditar.getNombreTipoVehiculo());
-                    tiposDeVehiculos.setDetalleTipoVehiculo(tipoVehiculoEditar.getDetalleTipoVehiculo());
-                    
-                    tipoVehiculoEditado = tiposDeVehiculos;
-                }
-            }
-        }
-        
-        return tipoVehiculoEditado;
-        
-    }
-    
-    public boolean eliminarTipoVehiculo(int id){
-        TipoVehiculoModel tipoVehiculoEliminado = null;
-        
-        if(!tipoVehiculo.isEmpty()){
-            for (TipoVehiculoModel tiposDeVehiculos : tipoVehiculo) {
-                if (tiposDeVehiculos.getIdTipoVehiculo()== idTipoVehiculo) {
-                   tipoVehiculoEliminado = tiposDeVehiculos;
-                }
-            }
-        }
-        
-        tipoVehiculo.remove(tipoVehiculoEliminado);
-        
-        
-        return true;
-    }
     
     
     

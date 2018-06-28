@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.PutMapping;
  * @author Alexis
  */
 @RestController
-@RequestMapping("/urlCombustible")
+@RequestMapping("/Combustible")
 public class CombustibleController {
     
     @Autowired

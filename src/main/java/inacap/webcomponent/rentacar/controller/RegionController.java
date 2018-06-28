@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author 19798398-1
  */
 @RestController
-@RequestMapping("/urlRegion")
+@RequestMapping("/Region")
 public class RegionController {
 
     @Autowired

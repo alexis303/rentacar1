@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author 19798398-1
  */
 @Entity
-@Table(name = "Combustible")
+@Table(name = "combustible")
 public class CombustibleModel {
     
     @Id

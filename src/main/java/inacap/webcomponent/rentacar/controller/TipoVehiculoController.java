@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/urlTipoVehiculo")
+@RequestMapping("/TipoVehiculo")
 public class TipoVehiculoController {
     
         @Autowired

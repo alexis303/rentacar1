@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PutMapping;
  * @author Alexis
  */
 @RestController
-@RequestMapping("/urlCarroceria")
+@RequestMapping("/Carroceria")
 public class CarroceriaController {
 
     @Autowired

@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PutMapping;
  * @author 19798398-1
  */
 @RestController
-@RequestMapping("/urlTransmision")
+@RequestMapping("/Transmision")
 public class TransmisionController {
     
     @Autowired

@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author Alexis
  */
 @Entity
-@Table(name = "Marca")
+@Table(name = "marca")
 public class MarcaModel {
     
      @Id

@@ -26,20 +26,19 @@ import org.springframework.web.bind.annotation.PutMapping;
  * @author 19798398-1
  */
 @RestController
-@RequestMapping("/urlModelo")
+@RequestMapping("/Modelo")
 public class ModeloController {
-    
+
     @Autowired
     private ModeloRepository modeloRepository;
-    
-     @GetMapping()
+
+    @GetMapping()
     public Iterable<ModeloModel> listarTodos() {
-        
+
         return modeloRepository.findAll();
-        
+
     }
 
-    
     @GetMapping("/{id}")
     public ResponseEntity<ModeloModel> muestraUnModelo(@PathVariable String id) {
 
@@ -54,18 +53,16 @@ public class ModeloController {
 
     }
 
-    
     @PutMapping("/{id}")
-     public ResponseEntity<ModeloModel> editaModelo(@PathVariable String id, @RequestBody ModeloModel modeloEditar) {
+    public ResponseEntity<ModeloModel> editaModelo(@PathVariable String id, @RequestBody ModeloModel modeloEditar) {
 
-        Optional<ModeloModel>modeloOptional = modeloRepository.findById(Integer.parseInt(id));
+        Optional<ModeloModel> modeloOptional = modeloRepository.findById(Integer.parseInt(id));
 
         if (modeloOptional.isPresent()) {
             ModeloModel modeloEncontrada = modeloOptional.get();
             modeloEditar.setIdModelo(modeloEncontrada.getIdModelo());
-            
+
             modeloRepository.save(modeloEditar);
-            
 
             return new ResponseEntity<>(modeloEditar, HttpStatus.OK);
         } else {
@@ -74,12 +71,10 @@ public class ModeloController {
 
     }
 
-    
-   
-  @PostMapping
+    @PostMapping
     public ResponseEntity<?> agregarModelo(@RequestBody ModeloModel nuevoModelo) {
 
-       nuevoModelo = modeloRepository.save(nuevoModelo);
+        nuevoModelo = modeloRepository.save(nuevoModelo);
 
         Optional<ModeloModel> ModeloOptional = modeloRepository.findById(nuevoModelo.getIdModelo());
 
@@ -92,14 +87,14 @@ public class ModeloController {
         }
 
     }
-    
+
     @DeleteMapping("/{id}")
-     public ResponseEntity<?> delete(@PathVariable String id) {
+    public ResponseEntity<?> delete(@PathVariable String id) {
 
         Optional<ModeloModel> modeloOptional = modeloRepository.findById(Integer.parseInt(id));
 
         if (modeloOptional.isPresent()) {
-            
+
             ModeloModel ModeloEncontrada = modeloOptional.get();
             modeloRepository.deleteById(ModeloEncontrada.getIdModelo());
 
@@ -110,6 +105,3 @@ public class ModeloController {
 
     }
 }
-        
-        
-   

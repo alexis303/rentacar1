@@ -6,18 +6,30 @@
 package inacap.webcomponent.rentacar.model;
 
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alexis
  */
+@Entity
+@Table(name = "version")
 public class VersionModel {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int idVersion;
     private String nombreVersion;
     private String detalleVersion;
     private int puertas;
-    private  int pasajeros;
+    private int pasajeros;
     private float cilindrada;
     private float rendimiento;
     private int capacidadMaletero;
@@ -26,17 +38,28 @@ public class VersionModel {
     private boolean cierreCentralizado;
     private boolean alzaVidriosElectricos;
     private boolean camaraRetroceso;
+
+    @ManyToOne
+    @JoinColumn(name = "id_combustible")
     private CombustibleModel combustible;
+
+    @ManyToOne
+    @JoinColumn(name = "id_carroceria")
     private CarroceriaModel carroceria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_transmision")
     private TransmisionModel transmision;
+
+    @ManyToOne
+    @JoinColumn(name = "id_traccion")
     private TraccionModel traccion;
+
+    @ManyToOne
+    @JoinColumn(name = "id_modelo")
     private ModeloModel modelo;
-    
-    public static ArrayList<VersionModel> version = new ArrayList<>();
-    private VersionModel AireAcondicionado;
-    private VersionModel CierreCentralizado;
-    private VersionModel AlzaVidriosElectricos;
-    private VersionModel CamaraRetroceso;
+
+   
 
     public int getIdVersion() {
         return idVersion;
@@ -225,95 +248,5 @@ public class VersionModel {
         this.traccion = traccion;
         this.modelo = modelo;
     }
-    
-    
-      
-    public boolean nuevaVersion(VersionModel nuevaVersion){
-    
-        int id = 0;
-        
-        if (!version.isEmpty()) {
-            
-            for (VersionModel versiones : version) {
-                if (versiones.getIdVersion()> id) {
-                    id = versiones.getIdVersion();
-                }
-            }
-            
-        }
-        
-        id++;
-        
-        version.add(new VersionModel(id, nuevaVersion.getNombreVersion(), nuevaVersion.getDetalleVersion(), nuevaVersion.getPuertas(), nuevaVersion.getPasajeros(), nuevaVersion.getCilindrada(), nuevaVersion.getRendimiento(), nuevaVersion.getCapacidadMaletero(), nuevaVersion.getAirbags(), nuevaVersion(nuevaVersion.AireAcondicionado), nuevaVersion(nuevaVersion.CierreCentralizado), nuevaVersion(nuevaVersion.AlzaVidriosElectricos), nuevaVersion(nuevaVersion.CamaraRetroceso), nuevaVersion.getCombustible(), nuevaVersion.getCarroceria(), nuevaVersion.getTransmision(), nuevaVersion.getTraccion(), nuevaVersion.getModelo()));
-         
-        return true;
-    }
-    
-    public VersionModel buscaVersion(int idVersionBuscada){
-    
-        VersionModel versionEncontrada = null;
-        
-        if(!version.isEmpty()){
-            for (VersionModel versiones : version) {
-                if (versiones.getIdVersion()== idVersionBuscada) {
-                    versionEncontrada = versiones;
-                }
-            }
-        }
-        
-        return versionEncontrada;
-        
-    }
-    
-    public VersionModel editarVersion(int idVersion, VersionModel versionEditar){
-    
-        VersionModel versionEditada = null;
-        
-        if(!version.isEmpty()){
-            for (VersionModel versiones : version) {
-                if (versiones.getIdVersion()== idVersion) {
-                    versiones.setNombreVersion(versionEditar.getNombreVersion());
-                    versiones.setDetalleVersion(versionEditar.getDetalleVersion());
-                    versiones.setPuertas(versionEditar.getPuertas());
-                    versiones.setPasajeros(versionEditar.getPasajeros());
-                    versiones.setCilindrada(versionEditar.getCilindrada());
-                    versiones.setRendimiento(versionEditar.getRendimiento());
-                    versiones.setCapacidadMaletero(versionEditar.getCapacidadMaletero());
-                    versiones.setAirbags(versionEditar.getAirbags());
-                    versiones.setAireAcondicionado(aireAcondicionado);
-                    versiones.setCierreCentralizado(cierreCentralizado);
-                    versiones.setAlzaVidriosElectricos(alzaVidriosElectricos);
-                    versiones.setCamaraRetroceso(camaraRetroceso);
-                    
-                    
-                    versionEditada = versiones;
-                }
-            }
-        }
-        
-        return versionEditada;
-        
-    }
-    
-    public boolean eliminarVersion(int id){
-        VersionModel versionEliminada = null;
-        
-        if(!version.isEmpty()){
-            for (VersionModel versiones : version) {
-                if (versiones.getIdVersion()== idVersion) {
-                   versionEliminada = versiones;
-                }
-            }
-        }
-        
-        version.remove(versionEliminada);
-        
-        
-        return true;
-    }
-    
-    
-    
-    
-    
+
 }

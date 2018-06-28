@@ -7,12 +7,24 @@ package inacap.webcomponent.rentacar.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alexis
  */
+@Entity
+@Table(name = "persona")
 public class PersonaModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int idPersona;
     private String rutPersona;
@@ -22,11 +34,15 @@ public class PersonaModel {
     private String telefonoPersona;
     private String direccion1Persona;
     private String direccion2Persona;
-
+    @ManyToOne
+    @JoinColumn(name = "id_ciudad")
     private CiudadModel ciudad;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_persona")
     private TipoPersonaModel tipoPersona;
 
-    public static ArrayList<PersonaModel> persona = new ArrayList<>();
+    
 
     public int getIdPersona() {
         return idPersona;
@@ -135,88 +151,6 @@ public class PersonaModel {
         this.ciudad = ciudad;
         this.tipoPersona = tipoPersona;
     }
-    
-    
-    
-      
-    public boolean nuevaPersona(PersonaModel nuevaPersona){
-    
-        int id = 0;
-        
-        if (!persona.isEmpty()) {
-            
-            for (PersonaModel personas : persona) {
-                if (personas.getIdPersona()> id) {
-                    id = personas.getIdPersona();
-                }
-            }
-            
-        }
-        
-        id++;
-        
-        persona.add(new PersonaModel(id, nuevaPersona.getRutPersona(), nuevaPersona.getNombrePersona(), nuevaPersona.getApellidoPersona(), nuevaPersona.getFechaNacimiento(), nuevaPersona.getTelefonoPersona(), nuevaPersona.getDireccion1Persona(), nuevaPersona.getDireccion2Persona(), nuevaPersona.getCiudad(), nuevaPersona.getTipoPersona()));
-         
-        return true;
-    }
-    
-    public PersonaModel buscaPersona(int idPersonaBuscada){
-    
-        PersonaModel personaEncontrada = null;
-        
-        if(!persona.isEmpty()){
-            for (PersonaModel personas : persona) {
-                if (personas.getIdPersona()== idPersonaBuscada) {
-                    personaEncontrada = personas;
-                }
-            }
-        }
-        
-        return personaEncontrada;
-        
-    }
-    
-    public PersonaModel editarPersona(int idPersona, PersonaModel personaEditar){
-    
-        PersonaModel personaEditada = null;
-        
-        if(!persona.isEmpty()){
-            for (PersonaModel personas : persona) {
-                if (personas.getIdPersona()== idPersona) {
-                    personas.setRutPersona(personaEditar.getRutPersona());
-                    personas.setNombrePersona(personaEditar.getNombrePersona());
-                    personas.setApellidoPersona(personaEditar.getApellidoPersona());
-                    personas.setFechaNacimiento(personaEditar.getFechaNacimiento());
-                    personas.setTelefonoPersona(personaEditar.getTelefonoPersona());
-                    personas.setDireccion1Persona(personaEditar.getDireccion1Persona());
-                    personas.setDireccion2Persona(personaEditar.getDireccion2Persona());
-                    
-                    
-                    personaEditada = personas;
-                }
-            }
-        }
-        
-        return personaEditada;
-        
-    }
-    
-    public boolean eliminarPersona(int id){
-        PersonaModel personaEliminada = null;
-        
-        if(!persona.isEmpty()){
-            for (PersonaModel personas : persona) {
-                if (personas.getIdPersona()== idPersona) {
-                   personaEliminada = personas;
-                }
-            }
-        }
-        
-        persona.remove(personaEliminada);
-        
-        
-        return true;
-    }
-    
+
 
 }

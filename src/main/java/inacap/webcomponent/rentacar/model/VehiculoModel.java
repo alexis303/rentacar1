@@ -6,21 +6,39 @@
 package inacap.webcomponent.rentacar.model;
 
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alexis
  */
+@Entity
+@Table(name = "vehiculo")
 public class VehiculoModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idVehiculo;
     private String patente;
     private int valor;
     private int año;
     private String color;
+
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_vehiculo")
     private TipoVehiculoModel tipoVehiculo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_version")
     private VersionModel version;
-    
-    public static ArrayList<VehiculoModel> vehiculo = new ArrayList<>();
+
+   
 
     public int getIdVehiculo() {
         return idVehiculo;
@@ -99,84 +117,5 @@ public class VehiculoModel {
         this.tipoVehiculo = tipoVehiculo;
         this.version = version;
     }
-    
-      
-    public boolean nuevoVehiculo(VehiculoModel nuevoVehiculo){
-    
-        int id = 0;
-        
-        if (!vehiculo.isEmpty()) {
-            
-            for (VehiculoModel vehiculos : vehiculo) {
-                if (vehiculos.getIdVehiculo()> id) {
-                    id = vehiculos.getIdVehiculo();
-                }
-            }
-            
-        }
-        
-        id++;
-        
-        vehiculo.add(new VehiculoModel(id, nuevoVehiculo.getPatente(), nuevoVehiculo.getValor(), nuevoVehiculo.getAño(), nuevoVehiculo.getColor(), nuevoVehiculo.getTipoVehiculo(), nuevoVehiculo.getVersion()));
-         
-        return true;
-    }
-    
-    public VehiculoModel buscaVehiculo(int idVehiculoBuscado){
-    
-        VehiculoModel vehiculoEncontrado = null;
-        
-        if(!vehiculo.isEmpty()){
-            for (VehiculoModel vehiculos : vehiculo) {
-                if (vehiculos.getIdVehiculo()== idVehiculoBuscado) {
-                    vehiculoEncontrado = vehiculos;
-                }
-            }
-        }
-        
-        return vehiculoEncontrado;
-        
-    }
-    
-    public VehiculoModel editarVehiculo(int idVehiculo, VehiculoModel vehiculoEditar){
-    
-        VehiculoModel vehiculoEditado = null;
-        
-        if(!vehiculo.isEmpty()){
-            for (VehiculoModel vehiculos : vehiculo) {
-                if (vehiculos.getIdVehiculo()== idVehiculo) {
-                    vehiculos.setPatente(vehiculoEditar.getPatente());
-                    vehiculos.setValor(vehiculoEditar.getValor());
-                    vehiculos.setAño(vehiculoEditar.getAño());
-                    vehiculos.setColor(vehiculoEditar.getColor());
-                    
-                    
-                    
-                    vehiculoEditado = vehiculos;
-                }
-            }
-        }
-        
-        return vehiculoEditado;
-        
-    }
-    
-    public boolean eliminarVehiculo(int id){
-        VehiculoModel vehiculoEliminado = null;
-        
-        if(!vehiculo.isEmpty()){
-            for (VehiculoModel vehiculos : vehiculo) {
-                if (vehiculos.getIdVehiculo()== idVehiculo) {
-                   vehiculoEliminado = vehiculos;
-                }
-            }
-        }
-        
-        vehiculo.remove(vehiculoEliminado);
-        
-        
-        return true;
-    }
-    
-    
+
 }

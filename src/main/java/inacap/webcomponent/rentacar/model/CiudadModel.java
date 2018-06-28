@@ -6,20 +6,34 @@
 package inacap.webcomponent.rentacar.model;
 
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alexis
  */
+@Entity
+@Table(name = "ciudad")
 public class CiudadModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int idCiudad;
     private String nombreCiudad;
     private String detalleCiudad;
     
+    @ManyToOne
+    @JoinColumn(name = "id_region")
     private RegionModel region;
+
     
-   public static ArrayList<CiudadModel> ciudad =new ArrayList<>();
 
     public int getIdCiudad() {
         return idCiudad;
@@ -68,84 +82,7 @@ public class CiudadModel {
         this.detalleCiudad = detalleCiudad;
         this.region = region;
     }
-    
-    
-     public boolean nuevaCiudad(CiudadModel nuevaCiudad){
-    
-        int id = 0;
-        
-        if (!ciudad.isEmpty()) {
-            
-            for (CiudadModel ciudades : ciudad) {
-                if (ciudades.getIdCiudad()> id) {
-                    id = ciudades.getIdCiudad();
-                }
-            }
-            
-        }
-        
-        id++;
-        
-        ciudad.add(new CiudadModel(id, nuevaCiudad.getNombreCiudad(), nuevaCiudad.getDetalleCiudad(), nuevaCiudad.getRegion()));
-         
-        return true;
-    }
-    
-    public CiudadModel buscaCiudad(int idciudadBuscada){
-    
-        CiudadModel ciudadEncontrada = null;
-        
-        if(!ciudad.isEmpty()){
-            for (CiudadModel ciudades : ciudad) {
-                if (ciudades.getIdCiudad()== idciudadBuscada) {
-                    ciudadEncontrada = ciudades;
-                }
-            }
-        }
-        
-        return ciudadEncontrada;
-        
-    }
-    
-    public CiudadModel editarCiudad(int idCiudad, CiudadModel CiudadEditar){
-    
-        CiudadModel ciudadEditada = null;
-        
-        if(!ciudad.isEmpty()){
-            for (CiudadModel ciudades : ciudad) {
-                if (ciudades.getIdCiudad()== idCiudad) {
-                    ciudades.setNombreCiudad(CiudadEditar.getNombreCiudad());
-                    ciudades.setDetalleCiudad(CiudadEditar.getDetalleCiudad());
-                    
-                    ciudadEditada = ciudades;
-                }
-            }
-        }
-        
-        return ciudadEditada;
-        
-    }
-    
-    public boolean eliminarCiudad(int id){
-        CiudadModel ciudadEliminada = null;
-        
-        if(!ciudad.isEmpty()){
-            for (CiudadModel ciudades : ciudad) {
-                if (ciudades.getIdCiudad()== idCiudad) {
-                   ciudadEliminada = ciudades;
-                }
-            }
-        }
-        
-        ciudad.remove(ciudadEliminada);
-        
-        
-        return true;
-    }
-    
-    
-    
+
     
 
-   
 }

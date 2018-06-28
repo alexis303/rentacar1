@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PutMapping;
  * @author 19798398-1
  */
 @RestController
-@RequestMapping("/urlTraccion")
+@RequestMapping("/Traccion")
 public class TraccionController {
     
     @Autowired
